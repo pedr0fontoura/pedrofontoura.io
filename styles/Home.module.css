@@ -38,19 +38,9 @@
   text-decoration: underline;
 }
 
-.title {
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
 .title,
 .main p {
   text-align: center;
-}
-
-.main p {
-  line-height: 1.5;
-  font-size: 1.5rem;
 }
 
 .main a {
@@ -70,14 +60,4 @@
   justify-content: center;
 
   gap: 20px;
-}
-
-@media (max-width: 768px) {
-  .main h1 {
-    font-size: 2.5rem;
-  }
-
-  .main p {
-    font-size: 1.2rem;
-  }
 }

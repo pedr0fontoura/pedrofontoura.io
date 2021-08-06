@@ -1,58 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
   font-family: 'Inter';
   font-style: normal;
   font-weight: 100 900;
   font-display: optional;
-  src: url(/fonts/inter-var-latin.woff2) format('woff2');
+  src: url(../public/fonts/inter-var-latin.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
     U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
     U+FEFF, U+FFFD;
 }
 
 html {
-  min-width: 360px;
-  scroll-behavior: smooth;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-  padding: 0;
-  margin: 0;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-html,
-body {
-  font-size: calc(16px + (22 - 16) * ((100vw - 320px) / (1600 - 320)));
-}
-
-#__next {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-p {
-  font-size: 1rem;
-}
-
-h1 {
-  font-size: 2.488rem;
-}
-
-h2 {
-  font-size: 2.074rem;
-}
-
-h3 {
-  font-size: 1.728rem;
 }

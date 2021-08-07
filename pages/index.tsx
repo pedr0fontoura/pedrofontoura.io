@@ -1,8 +1,18 @@
 import Image from 'next/image';
+import { GetStaticProps } from 'next';
+
+import { IPostData } from '@/types/mdx';
+
+import { getAllFilesData } from '@/lib/mdx';
 
 import Page from '@/components/Page';
+import BlogPostList from '@/components/BlogPostList';
 
-export default function Home() {
+interface IProps {
+  posts: IPostData[];
+}
+
+const Home = ({ posts }: IProps) => {
   return (
     <Page>
       <main className="w-full max-w-3xl m-auto flex flex-col justify-center items-center text-center">
@@ -15,8 +25,8 @@ export default function Home() {
           />
         </div>
 
-        <h1 className="text-4xl md:text-6xl font-bold mt-10">
-          Hi, I&apos;m Pedro Fontoura.
+        <h1 className="text-4xl md:text-6xl font-bold text-black tracking-tight mt-10">
+          Hi, I&apos;m Pedro Fontoura
         </h1>
 
         <p className="text-lg md:text-xl mt-10">
@@ -36,7 +46,17 @@ export default function Home() {
         >
           👋 Get in touch!
         </a>
+
+        <BlogPostList posts={posts} />
       </main>
     </Page>
   );
-}
+};
+
+export const getStaticProps: GetStaticProps<IProps> = async () => {
+  const posts = await getAllFilesData('blog');
+
+  return { props: { posts } };
+};
+
+export default Home;

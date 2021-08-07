@@ -26,7 +26,9 @@ const Post: React.FunctionComponent<IProps> = ({ children, data }) => {
 
       <article className="flex flex-col justify-start items-start max-w-2xl mx-auto">
         <header className="mt-10">
-          <h1 className="text-5xl font-bold">{data.title}</h1>
+          <h1 className="text-5xl font-bold text-black tracking-tight">
+            {data.title}
+          </h1>
           <div className="flex justify-between items-center mt-5">
             <div className="flex items-center">
               <div className="w-8 h-8 mr-2 relative">

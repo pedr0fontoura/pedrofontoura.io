@@ -3,6 +3,7 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote';
 export interface IPostData {
   title: string;
   publishedAt: string;
+  slug?: string;
 }
 
 export interface IFile {

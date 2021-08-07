@@ -1,20 +1,11 @@
-import Head from 'next/head';
 import Image from 'next/image';
 
-import Page from '@/layouts/Page';
+import Page from '@/components/Page';
 
 export default function Home() {
   return (
     <Page>
-      <Head>
-        <title>Pedro Fontoura</title>
-
-        <meta
-          name="description"
-          content="Software Developer and Computer Science Student"
-        />
-      </Head>
-      <main className="w-full max-w-3xl m-auto flex flex-col justify-center text-center">
+      <main className="w-full max-w-3xl m-auto flex flex-col justify-center items-center text-center">
         <div className="w-48 h-48 relative mx-auto mt-20">
           <Image
             alt="Pedro Fontoura"
@@ -38,6 +29,13 @@ export default function Home() {
           Currently working with <strong>TypeScript</strong>,{' '}
           <strong>Node.js</strong> and <strong>React</strong>.
         </p>
+
+        <a
+          href="https://www.linkedin.com/in/pffrd/"
+          className="w-40 text-lg md:text-xl mt-10 font-normal rounded hover:underline"
+        >
+          👋 Get in touch!
+        </a>
       </main>
     </Page>
   );

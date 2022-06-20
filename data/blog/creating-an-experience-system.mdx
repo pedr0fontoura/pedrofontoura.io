@@ -1,0 +1,106 @@
+---
+title: 'Creating a proper experience system for your game'
+summary: 'A clever approach to design and implement XP progression on you game and retain your players.'
+publishedAt: '2022-06-20'
+image: '/static/images/creating-an-experience-system/banner.png'
+---
+
+<Image
+  alt={'GTAO XP system'}
+  src={'/static/images/creating-an-experience-system/banner.png'}
+  width={1200}
+  height={630}
+  priority
+/>
+
+## What is an experience system?
+
+An experience or "XP" system is an engagement tool for your game that gives players a sense of progression through the gameplay. Multiplayer games use it very often.
+
+## Why should I waste resources on developing a proper experience system?
+
+Why do you have an experience system in the first place? To keep players playing your game. If you can not give enough attention to this system while developing, why should the player stick to your product after it is out there and the launch hype is out?
+
+## That is weird
+
+Imagine that you are playing your game and just reached level 2. It took you roughly one hour to go up from level 1.
+
+You continued playing, and now, you are a lot of hours deep into the gameplay, but different from the game start, you can not even see the next level far ahead. That would be very weird and highly demotivating, right? Exactly.
+
+The XP progression of your game MUST make sense. Picking arbitrary values out of your mind to define the amount of experience per level is a no-no.
+
+So, if the experience system needs to follow logic, what is the most logical thing in the world? Math.
+
+## 1 + 1 = 2
+
+There are infinite math functions that you could use to describe the experience progression curve.
+I will not enter the subject of what function or equation is more appropriate or anything in that direction. Deciding which mathematical function to use is something you can discuss with the math guy on your development team.
+
+You need to define a function that takes the level as a parameter and returns the amount of XP for that level, and vice-versa.
+
+For this example, we will be using the following function to describe the curve of our experience system:
+
+<div align="center">
+  <Image
+    alt={'Formula'}
+    src={'/static/images/creating-an-experience-system/formula.png'}
+    width={360}
+    height={100}
+    priority
+  />
+</div>
+
+If we plot that function on Geogebra, we can visualize the shape of the curve:
+
+<div align="center">
+  <Image
+    alt={'Curve'}
+    src={'/static/images/creating-an-experience-system/plot.png'}
+    width={294}
+    height={294}
+    priority
+  />
+</div>
+
+## **Let me see the code**
+
+The implementation of this system is pretty simple. There are essentially two base functions: **getXPFromLevel** and **getLevelFromXP**, everything else that is needed on a system like this will be built on top of them.
+
+```js
+const INITIAL_FACTOR = 25;
+
+const solveQuadraticEquation = (a: number, b: number, c: number): number[] => {
+  const root = (-1 * b + Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+  const root2 = (-1 * b - Math.sqrt(Math.pow(b, 2) - 4 * a * c)) / (2 * a);
+
+  return [root, root2];
+};
+
+const getXPFromLevel = (level: number): number => {
+  if (level < 0) {
+    return 0;
+  }
+
+  return (Math.pow(level, 2) + 3 * level) * INITIAL_FACTOR;
+};
+
+const getLevelFromXP = (xp: number): number => {
+  const roots = solveQuadraticEquation(1, 3, (xp / INITIAL_FACTOR) * -1);
+
+  const level = roots.find((root) => root >= 0);
+
+  if (level === undefined) {
+    return 0;
+  }
+
+  return Math.floor(level);
+};
+```
+
+There is not much to talk about the code because it is highly dependent on which math formula you choose.
+
+A detail that I can point out is that I used an initial factor to adjust the experience values to be more aesthetic (_e.g._, the amount of XP needed to reach level 1 is 100 instead of 4.).
+
+There is much more involved in an experience system, like level rewards and rewarding XP for interactions, but I will save those for another post. The idea here is to make a brief introduction to this subject.
+
+I hope you enjoyed my first blog post. If you have thoughts about the post itself or think of another way to implement this system, feel free to reach out on my social media, I would love to hear it.

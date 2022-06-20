@@ -12,7 +12,12 @@ interface Props {
 
 const BlogPost = ({ children, data }: Props) => {
   return (
-    <Page title={data.title}>
+    <Page
+      title={`${data.title} - Pedro Fontoura`}
+      description={`${data.summary}`}
+      image={data.image}
+      type="article"
+    >
       <header className="flex justify-start items-center max-w-4xl mx-auto">
         <Link href="/">
           <a
@@ -25,7 +30,7 @@ const BlogPost = ({ children, data }: Props) => {
       </header>
 
       <article className="flex flex-col justify-start items-start max-w-4xl mx-auto">
-        <header className="mt-10">
+        <header className="mt-10 w-full">
           <h1 className="text-5xl font-bold text-black tracking-tight">
             {data.title}
           </h1>

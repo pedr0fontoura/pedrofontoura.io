@@ -1,36 +1,36 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { useMDXComponent } from 'next-contentlayer/hooks';
+import { allBlogs } from 'contentlayer/generated';
+import type { Blog } from 'contentlayer/generated';
+
 import { ParsedUrlQuery } from 'querystring';
-import { MDXRemote } from 'next-mdx-remote';
 
-import { IFile } from '@/types/mdx';
-
-import { getFiles, getFileBySlug } from '@/lib/mdx';
-
-import Post from '@/layouts/Post';
+import BlogPost from '@/layouts/BlogPost';
+import { MDXComponents } from '@/components/MDXComponents';
 
 interface IProps {
-  post: IFile;
+  post: Blog;
 }
 
 interface IParams extends ParsedUrlQuery {
   slug: string;
 }
 
-const Blog = ({ post }: IProps) => {
+const BlogLayout = ({ post }: IProps) => {
+  const Component = useMDXComponent(post.body.code);
+
   return (
-    <Post data={post.data}>
-      <MDXRemote {...post.mdx} />
-    </Post>
+    <BlogPost data={post}>
+      <Component components={{ ...MDXComponents }} />
+    </BlogPost>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const posts = await getFiles('blog');
-
   return {
-    paths: posts.map((post) => ({
+    paths: allBlogs.map((post) => ({
       params: {
-        slug: post.replace(/\.mdx/, '')
+        slug: post.slug
       }
     })),
     fallback: false
@@ -40,7 +40,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps<IProps, IParams> = async ({
   params
 }) => {
-  const post = await getFileBySlug('blog', params?.slug);
+  const post = allBlogs.find((post) => post.slug === params?.slug);
 
   if (post) {
     return { props: { post } };
@@ -49,4 +49,4 @@ export const getStaticProps: GetStaticProps<IProps, IParams> = async ({
   return { notFound: true };
 };
 
-export default Blog;
+export default BlogLayout;

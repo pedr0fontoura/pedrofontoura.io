@@ -1,15 +1,13 @@
 import Image from 'next/image';
 import { GetStaticProps } from 'next';
-
-import { IPostData } from '@/types/mdx';
-
-import { getAllFilesData } from '@/lib/mdx';
+import { allBlogs } from 'contentlayer/generated';
+import type { Blog } from 'contentlayer/generated';
 
 import Page from '@/components/Page';
 import BlogPostList from '@/components/BlogPostList';
 
 interface IProps {
-  posts: IPostData[];
+  posts: Blog[];
 }
 
 const Home = ({ posts }: IProps) => {
@@ -54,9 +52,7 @@ const Home = ({ posts }: IProps) => {
 };
 
 export const getStaticProps: GetStaticProps<IProps> = async () => {
-  const posts = await getAllFilesData('blog');
-
-  return { props: { posts } };
+  return { props: { posts: allBlogs } };
 };
 
 export default Home;

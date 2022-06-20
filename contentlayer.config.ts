@@ -6,7 +6,6 @@ import {
 
 import remarkGfm from 'remark-gfm';
 import rehypeSlug from 'rehype-slug';
-import rehypeCodeTitles from 'rehype-code-titles';
 import rehypePrism from 'rehype-prism-plus';
 
 const computedFields: ComputedFields = {
@@ -34,6 +33,6 @@ export default makeSource({
   documentTypes: [Blog],
   mdx: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeSlug, rehypeCodeTitles, rehypePrism]
+    rehypePlugins: [rehypeSlug, rehypePrism]
   }
 });

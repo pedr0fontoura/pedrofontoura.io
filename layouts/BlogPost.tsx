@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowLeft } from 'react-icons/fa';
 import type { Blog } from 'contentlayer/generated';
+import { parseISO, format } from 'date-fns';
 
 import Page from '@/components/Page';
 
@@ -14,8 +15,9 @@ const BlogPost = ({ children, data }: Props) => {
   return (
     <Page
       title={`${data.title} - Pedro Fontoura`}
-      description={`${data.summary}`}
-      image={data.image}
+      description={data.summary}
+      image={`https://pedrofontoura.io${data.image}`}
+      date={new Date(data.publishedAt).toISOString()}
       type="article"
     >
       <header className="flex justify-start items-center max-w-4xl mx-auto">
@@ -46,7 +48,7 @@ const BlogPost = ({ children, data }: Props) => {
               </div>
               <p>Pedro Fontoura</p>
             </div>
-            <p>{data.publishedAt}</p>
+            <p>{format(parseISO(data.publishedAt), 'MMMM dd, yyyy')}</p>
           </div>
         </header>
 

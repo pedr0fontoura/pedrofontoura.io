@@ -52,7 +52,7 @@ const BlogPost = ({ children, data }: Props) => {
           </div>
         </header>
 
-        <section className="max-w-4xl mt-10 prose">{children}</section>
+        <section className="w-full max-w-4xl mt-10 prose">{children}</section>
       </article>
     </Page>
   );

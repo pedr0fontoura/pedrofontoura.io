@@ -1,19 +1,19 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { FaArrowLeft } from 'react-icons/fa';
-
-import { IPostData } from '@/types/mdx';
+import type { Blog } from 'contentlayer/generated';
 
 import Page from '@/components/Page';
 
-interface IProps {
-  data: IPostData;
+interface Props {
+  data: Blog;
+  children: React.ReactNode;
 }
 
-const Post: React.FunctionComponent<IProps> = ({ children, data }) => {
+const BlogPost = ({ children, data }: Props) => {
   return (
     <Page title={data.title}>
-      <header className="flex justify-start items-center max-w-2xl mx-auto">
+      <header className="flex justify-start items-center max-w-4xl mx-auto">
         <Link href="/">
           <a
             aria-label="Go back to the homepage"
@@ -24,7 +24,7 @@ const Post: React.FunctionComponent<IProps> = ({ children, data }) => {
         </Link>
       </header>
 
-      <article className="flex flex-col justify-start items-start max-w-2xl mx-auto">
+      <article className="flex flex-col justify-start items-start max-w-4xl mx-auto">
         <header className="mt-10">
           <h1 className="text-5xl font-bold text-black tracking-tight">
             {data.title}
@@ -45,10 +45,10 @@ const Post: React.FunctionComponent<IProps> = ({ children, data }) => {
           </div>
         </header>
 
-        <section className="w-full mt-10 prose">{children}</section>
+        <section className="max-w-4xl mt-10 prose">{children}</section>
       </article>
     </Page>
   );
 };
 
-export default Post;
+export default BlogPost;

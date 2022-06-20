@@ -1,9 +1,8 @@
 import Link from 'next/link';
-
-import { IPostData } from '@/types/mdx';
+import type { Blog } from 'contentlayer/generated';
 
 interface IProps {
-  posts: IPostData[];
+  posts: Blog[];
 }
 
 const BlogPostList = ({ posts }: IProps) => {

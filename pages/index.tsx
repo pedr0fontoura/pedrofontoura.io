@@ -28,9 +28,14 @@ const Home = ({ posts }: IProps) => {
         </h1>
 
         <p className="text-lg md:text-xl mt-10">
-          I&apos;m a Computer Science student seeking professional experience to
-          act in challenging environments, solving real-world problems using
-          modern technologies.
+          I&apos;m a software developer focused on creating multiplayer gaming
+          experiences.
+        </p>
+
+        <p className="text-lg md:text-xl mt-10">
+          Delivering high-quality products for players and providing a great
+          developer experience for my teammates is what drives me. I&apos;m also
+          an open-sorcerer and game modding enthusiast.
         </p>
 
         <p className="text-lg md:text-xl mt-10">

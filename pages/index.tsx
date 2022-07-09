@@ -35,7 +35,7 @@ const Home = ({ posts }: IProps) => {
         <p className="text-lg md:text-xl mt-10">
           Delivering high-quality products for players and providing a great
           developer experience for my teammates is what drives me. I&apos;m also
-          an open-sorcerer and game modding enthusiast.
+          an open-sourcerer and game modding enthusiast.
         </p>
 
         <p className="text-lg md:text-xl mt-10">
